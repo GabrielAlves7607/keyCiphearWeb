@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyCipher</title>
+    <style>
+        body {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+        }
+        .input-field, .output-field {
+            background-color: #3c3f41;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-green {
+            background-color: #4caf50;
+            color: white;
+        }
+        .button-red {
+            background-color: #f44336;
+            color: white;
+        }
+        .button-blue {
+            background-color: #2196f3;
+            color: white;
+        }
+        .warning {
+            color: #ffcc00;
+            font-size: 12px;
+        }
+        .message {
+            margin: 10px auto;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>KeyCipher</h1>
+
+    <label for="inputMessage">Mensagem:</label><br>
+    <input type="text" id="inputMessage" class="input-field" placeholder="Digite sua mensagem"><br>
+
+    <p class="warning">Apenas letras do alfabeto sem acento ou caracteres especiais são aceitas</p>
+
+    <button class="button button-green" onclick="encryptMessage()">Criptografar</button>
+    <button class="button button-red" onclick="decryptMessage()">Descriptografar</button>
+
+    <textarea id="outputMessage" class="output-field" rows="5" readonly></textarea><br>
+
+    <button class="button button-blue" onclick="saveToFile()">Salvar Mensagem</button>
+
+    <div class="message" id="userMessage"></div>
+
+    <p class="warning">https://github.com/GabrielAlves7607 - GitHub</p>
+    <p class="warning">www.linkedin.com/in/joão-gabriel-alves-rocha-143651307 - Linkedin</p>
+
+    <script>
+        const codificacao = {
+            'a': 'q', 'b': 'g', 'c': 'd', 'd': 'e', 'e': '3', 'f': 'r', 'g': 't', 'h': 'y', 'i': '8', 'j': 'u',
+            'k': 'i', 'l': 'o', 'm': 'j', 'n': 'h', 'o': '9', 'p': '0', 'q': '1', 'r': '4', 's': 'w', 't': '5',
+            'u': '7', 'v': 'f', 'w': '2', 'x': 's', 'y': '6', 'z': 'a'
+        };
+
+        const decodificacao = {
+            'q': 'a', 'g': 'b', 'd': 'c', 'e': 'd', '3': 'e', 'r': 'f', 't': 'g', 'y': 'h', '8': 'i', 'u': 'j',
+            'i': 'k', 'o': 'l', 'j': 'm', 'h': 'n', '9': 'o', '0': 'p', '1': 'q', '4': 'r', 'w': 's', '5': 't',
+            '7': 'u', 'f': 'v', '2': 'w', 's': 'x', '6': 'y', 'a': 'z'
+        };
+
+        function encryptMessage() {
+            const message = document.getElementById("inputMessage").value.toLowerCase();
+            if (!message) {
+                alert("Por favor, insira uma mensagem para criptografar.");
+                return;
+            }
+            const result = message.split('').map(char => codificacao[char] || char).join('');
+            document.getElementById("outputMessage").value = result;
+            setMessage("Mensagem criptografada com sucesso!", "#4caf50");
+        }
+
+        function decryptMessage() {
+            const message = document.getElementById("inputMessage").value.toLowerCase();
+            if (!message) {
+                alert("Por favor, insira uma mensagem para descriptografar.");
+                return;
+            }
+            const result = message.split('').map(char => decodificacao[char] || char).join('');
+            document.getElementById("outputMessage").value = result;
+            setMessage("Mensagem descriptografada com sucesso!", "#4caf50");
+        }
+
+        function saveToFile() {
+            const text = document.getElementById("outputMessage").value.trim();
+            if (!text) {
+                alert("Não há nada para salvar.");
+                return;
+            }
+            const blob = new Blob([text], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "mensagem.txt";
+            link.click();
+            setMessage("Mensagem salva com sucesso!", "#4caf50");
+        }
+
+        function setMessage(message, color) {
+            const userMessage = document.getElementById("userMessage");
+            userMessage.textContent = message;
+            userMessage.style.color = color;
+        }
+    </script>
+</body>
+</html>
