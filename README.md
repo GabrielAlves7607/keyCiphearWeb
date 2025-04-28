@@ -1,7 +1,3 @@
-Aqui está um **README.md** completo para o seu projeto **KeyCipher**:
-
----
-
 # KeyCipher 🔐
 
 O **KeyCipher** é uma aplicação web simples e funcional de **criptografia e descriptografia de mensagens**.  
