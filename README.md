@@ -31,13 +31,6 @@ Utilizando um sistema de substituição personalizado, o projeto transforma letr
 
 ---
 
-## 📎 Links
-
-- GitHub: [https://github.com/GabrielAlves7607](https://github.com/GabrielAlves7607)
-- LinkedIn: [www.linkedin.com/in/joão-gabriel-alves-rocha-143651307](https://www.linkedin.com/in/joão-gabriel-alves-rocha-143651307)
-
----
-
 ## 📷 Preview
 
 > *![image](https://github.com/user-attachments/assets/f21f0cc9-be03-4287-885b-83d939921120)*
